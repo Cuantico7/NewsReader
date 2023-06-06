@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title> News Reader </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +9,23 @@
     <ion-toolbar>
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
+    <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
   </ion-header>
 
   <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-list>
+    <ion-item *ngFor="let source of data.sources">
+      <ion-label>
+        <h3 text-wrap>{{source.name}} {{source.url}}</h3>
+        <h2>{{source.url}}</h2>
+        <p>{{ source.description}}</p>
+        <p>
+          <ion-icon name="copy-outline"></ion-icon>{{ source.category}}
+          <ion-icon name="language-outline"></ion-icon>{{ source.language}}
+          <ion-icon name="navigate-circle-outline"></ion-icon>{{
+          source.country}}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
