@@ -1,0 +1,7 @@
+{
+  "name": "newsreader",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
