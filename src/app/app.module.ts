@@ -6,7 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http'; //<---- Aqui
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpService } from './api/http.service';  ///<----- Aqui
+import { HttpNewsService } from './api/http.newsservice';  ///<----- Aqui
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,7 +14,7 @@ import { HttpService } from './api/http.service';  ///<----- Aqui
             HttpClientModule, ///<----- Aqui
             IonicModule.forRoot(), AppRoutingModule],
   providers: [
-              HttpService, //<------ Aqui 
+              HttpNewsService, //<------ Aqui 
               { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
             ],
   bootstrap: [AppComponent],

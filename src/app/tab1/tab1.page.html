@@ -9,12 +9,16 @@
     <ion-toolbar>
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
-    <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+    <ion-searchbar
+      placeholder="Search..."
+      [(ngModel)]="filterTerm"
+      animated="true"
+    ></ion-searchbar>
   </ion-header>
 
   <app-explore-container name="Tab 1 page"></app-explore-container>
   <ion-list>
-    <ion-item *ngFor="let source of data.sources">
+    <ion-item *ngFor="let source of data">
       <ion-label>
         <h3 text-wrap>{{source.name}} {{source.url}}</h3>
         <h2>{{source.url}}</h2>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpService } from '../api/http.service';
+import { HttpNewsService } from '../api/http.newsservice';
 import { Observable} from 'rxjs';
+import { NewsControllService } from '../controllers/news/news-controll.service';
 
 @Component({
   selector: 'app-tab1',
@@ -11,19 +12,21 @@ export class Tab1Page {
   
   public data:any;
   public filterTerm: any;
-  constructor( http:HttpService) {
+  constructor( public newCntrl:NewsControllService) {
     console.log("Houston all OK in TAPS1!!!");
-    let response : Observable<any>;
-    response = http.sendRequest("sources");
-
-    response.subscribe(respuesta=>{
-       console.log(respuesta);
-       this.data=respuesta;
-    }, err=>{
-         console.log(err);
-    })
+    this.getAllNewsSource();
 
     
+  }
+
+  getAllNewsSource()
+  {
+    this.newCntrl.getAllSources().then(result=>{
+       this.data = result.sources;
+    }).catch(error=>{
+      console.log("Error - Control no trajo datos");
+    });
+
   }
 
 }// Fin clase
