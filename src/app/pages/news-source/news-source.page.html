@@ -13,6 +13,9 @@
       (ionCancel)="cancelSearhText($event)"
     >
     </ion-searchbar>
+    <ion-buttons slot="start" *ngIf="showLupa">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title *ngIf="showLupa"> Top News - {{sourceId}} </ion-title>
 
     <ion-buttons slot="primary" *ngIf="showLupa" end>
@@ -35,15 +38,12 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-item-sliding *ngFor="let new of data">
+  <ion-item-sliding *ngFor="let new of data; let i = index">
     <ion-item
       class="item item-thumbnail-left"
       detail="false"
-      routerLink="../../new-detail/{{new}}"
+      routerLink="../../new-detail/{{i}}"
     >
-      <!-- Ejemplo de llamar a otra pagina desde metodo, en este caso no uso el ROUTERLINK
-        (click)="getAllNewsBySource2(source.id)"
-        -->
       <ion-thumbnail item-start>
         <img [src]="new.urlToImage" style="border-radius: 50%" />
       </ion-thumbnail>
@@ -74,11 +74,16 @@
           slot="top"
           ios="ellipsis-horizontal"
           md="ellipsis-vertical"
+          (click)="showMore()"
         ></ion-icon>
         More
       </ion-item-option>
       <ion-item-option color="secondary">
-        <ion-icon slot="top" name="archive"></ion-icon>
+        <ion-icon
+          slot="top"
+          name="archive"
+          (click)="showArchive(new.title)"
+        ></ion-icon>
         Archive
       </ion-item-option>
       <ion-item-option color="warning">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NewsControllService } from '../../controllers/news/news-controll.service';
 import { HelperService } from '../../services/helper.service';
 import { Router,ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-news-source',
   templateUrl: './news-source.page.html',
@@ -16,9 +17,9 @@ export class NewsSourcePage implements OnInit {
   constructor(public newCntrl:NewsControllService,
               public helper:HelperService,
               public route:ActivatedRoute,
-              public router:Router,) 
+              public router:Router) 
   { 
-     this.sourceId = this.route.snapshot.paramMap.get("sourceId"); // tomo el Id de la funete de noticias
+     this.sourceId = this.route.snapshot.paramMap.get("sourceId"); // tomo el Id de la fuente de noticias
      //this.getTopHeadLinesBySources();
     }
 
@@ -70,6 +71,8 @@ export class NewsSourcePage implements OnInit {
       this.data = this.dataTemp;
       /// Aqui llamamos al filtrador
       this.data = this.filtrador(filters)
+      this.newCntrl.dataNews.articles=this.data;
+
   }
 
   public filtrador(params:any)
@@ -96,6 +99,7 @@ export class NewsSourcePage implements OnInit {
   {
      console.log("Cancelé ......");
      this.data = this.dataTemp;//<--- Al cancelar debe volver a la lista original guardada dataTemp
+     this.newCntrl.dataNews.articles = this.dataTemp;
      this.showLupa=true;
   }
 
@@ -111,29 +115,15 @@ export class NewsSourcePage implements OnInit {
      }
   }
 
-    //Este es un metodo si yo quiero enviar otros parametros una pagina
-  //Es invocado por un envento CLICK en la vista, se deja como
-  openNew(params:any)
+  showMore()
   {
-    console.log(params);
-    let data = {title:params.new.title,
-                author:params.new.author,
-                content:params.new.content,
-                publishedAt:params.new.publishedAt,
-                urlToImage:params.new.urlToImage,
-                url:params.new.url
-
-
-              };
-    console.log(params);
-    let objData = JSON.stringify(data);
-
-    console.log(objData);
-    this.router.navigate([`/new-detail/${objData}`]);
-    //this.router.navigate([`/new-detail/${objData}`]);
-    //this.router.navigate([`second/'+${objData}`]);
-    //this.router.navigateByUrl('new-detail',objData);
-    //this.router.navigate([`/new-detail/`],{queryParams:params});
+     this.helper.presentToast("Seleccioné More",3000,"top")
   }
+
+  showArchive(message:any)
+  {
+     this.helper.presentAlertOK(message);
+  }
+
 
 }

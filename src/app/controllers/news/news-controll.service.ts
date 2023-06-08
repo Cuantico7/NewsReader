@@ -5,7 +5,7 @@ import { NewsModelService } from '../../models/news/news-model.service';
   providedIn: 'root'
 })
 export class NewsControllService {
-
+  public dataNews:any=[];
   constructor( public newsModel:NewsModelService) 
   { 
 
@@ -36,7 +36,10 @@ export class NewsControllService {
         this.newsModel.getTopHeadLinesBySources(sourceId).then(result=>{
           console.log(result.status);
           if (result.status=="ok")
+          {
+            this.dataNews=result;
             resolve(result);
+          }
           else
            reject({status:"fail",message:"No se trajo datos del modelo"});
         }).catch(error=>{

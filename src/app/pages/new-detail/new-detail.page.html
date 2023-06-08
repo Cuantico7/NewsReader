@@ -1,13 +1,31 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>News Detail</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> News Detail</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">new-detail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="card-bg">
+  <ion-card-content class="ion-text-justify">
+    <img [src]="new.urlToImage" />
+
+    <ion-card-title> {{ new.title }} </ion-card-title>
+    <p text-wrap>{{new.description}}</p>
+    <p text-wrap>{{new.content}}</p>
+    <p>
+      <ion-icon ios="ios-calendar" md="calendar"></ion-icon>
+      {{ new.publishedAt | date:'short' }}
+    </p>
+
+    <p>
+      <ion-icon ios="ios-person" md="person"></ion-icon>
+      {{ new.author }}
+    </p>
+    <p>
+      <ion-icon ios="ios-globe" md="globe"></ion-icon>
+      <a href="#" (click)="openUrl(new.url)">{{new.url}}</a>
+    </p>
+  </ion-card-content>
 </ion-content>
