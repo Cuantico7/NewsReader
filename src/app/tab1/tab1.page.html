@@ -1,20 +1,43 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> News Reader </ion-title>
+  <ion-toolbar color="primary">
+    <ion-searchbar
+      *ngIf="!showLupa"
+      placeholder="Search ......"
+      showCancelButton="focus"
+      cancelButtonText="Cancel"
+      animated="true"
+      show-clear-button="always"
+      clear-icon="trash-bin"
+      value=""
+      (ionInput)="handleInputText($event)"
+      (ionCancel)="cancelSearhText($event)"
+    >
+    </ion-searchbar>
+    <ion-title *ngIf="showLupa"> Sources </ion-title>
+
+    <ion-buttons slot="primary" *ngIf="showLupa" end>
+      <ion-button
+        color="primary"
+        ion-button
+        icon-only
+        (click)="showSearchTextBox()"
+        light
+        *ngIf="showLupa"
+      >
+        <ion-img src="assets/icon/search.png" size="32"></ion-img>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-    <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
-  </ion-header>
+  <!-- Adicionando nuestro refrescador -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
   <ion-list>
-    <ion-item *ngFor="let source of data.sources">
+    <ion-item *ngFor="let source of data">
       <ion-label>
         <h3 text-wrap>{{source.name}} {{source.url}}</h3>
         <h2>{{source.url}}</h2>
