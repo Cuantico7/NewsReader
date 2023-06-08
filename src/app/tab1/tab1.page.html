@@ -37,7 +37,10 @@
   </ion-refresher>
 
   <ion-list>
-    <ion-item *ngFor="let source of data">
+    <ion-item
+      *ngFor="let source of data"
+      routerLink="../../news-source/{{source.id}}"
+    >
       <ion-label>
         <h3 text-wrap>{{source.name}} {{source.url}}</h3>
         <h2>{{source.url}}</h2>

@@ -7,13 +7,13 @@ import { HttpClient,HttpHeaders } from '@angular/common/http'
 export class HttpNewsService {
 
   public baseUrl: string="";
-  public key="apiKey=6e8e6e6530c0449e85044f4d3c5a5d14";
+  public keyApi="6e8e6e6530c0449e85044f4d3c5a5d14";
   constructor( public http : HttpClient) 
   { 
       console.log("Hola construí la conexion");
   }
 
-  sendRequest(action:any,parameters?:any,method?:any)
+  sendRequest(action:any,parameters:any,method?:any)
   {
     let httpheader={ 
                        headers: new HttpHeaders ({"Content-Type":"text/plain"})
@@ -28,13 +28,14 @@ export class HttpNewsService {
        {
          params+=k+"="+parameters[k]+"&";
        }
-
-       this.baseUrl=this.baseUrl+params+this.key;
+       console.log(params);
+       this.baseUrl=this.baseUrl+params+"apiKey="+this.keyApi;
     }
     else
     {
-      this.key="/?apiKey=6e8e6e6530c0449e85044f4d3c5a5d14";
-      this.baseUrl=this.baseUrl+this.key;
+      //this.key="?apiKey=6e8e6e6530c0449e85044f4d3c5a5d14";
+      //this.key="?" + this.key; //apiKey=6e8e6e6530c0449e85044f4d3c5a5d14";
+      this.baseUrl=this.baseUrl+"?apiKey="+this.keyApi;
     }  
     console.log(this.baseUrl);
     if(method =="GET")  

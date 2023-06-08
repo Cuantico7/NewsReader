@@ -20,7 +20,7 @@ export  class HelperService {
   }
 
 
-
+/** muestra un cargador **/
 async showLoader(message:string) {
     this.isLoading = true;
     return await this.loadingCtrl.create({

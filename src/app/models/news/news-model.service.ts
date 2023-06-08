@@ -29,4 +29,23 @@ export class NewsModelService {
      
   }
 
+  getTopHeadLinesBySources(sourceId:any): Promise<any>
+  {
+     let parameters={
+        sources:sourceId
+     };
+     return new Promise((resolve,reject)=>{
+      let response = this.newsHttp.sendRequest("top-headlines",parameters,"GET");
+      response.subscribe(data=>{
+        //console.log(data);
+        resolve(data);
+      },err=>{
+         reject({status:"error en servicio de conexion HTTP"})
+      }
+      )
+
+     })
+     
+  }
+
 }

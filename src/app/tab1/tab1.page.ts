@@ -34,20 +34,21 @@ export class Tab1Page {
 
   getAllNewsSource()
   {
-    let myData:any;
-    this.helper.showLoader("Refrescando Datos");
-    this.newCntrl.getAllSources().then(result=>{
-       myData = result;
-       this.data =myData.sources; //result.sources;
-       this.dataTemp = myData.sources;
-       //this.helper.presentToast("Datos cargados correctamente",3000,"top");
-       //this.helper.presentAlertOK("Datos cargados correctamente");
-    }).catch(error=>{
-      console.log("Error - Control no trajo datos");
-      this.helper.presentToast("Error - Control no trajo datos",3000,"top");
-      this.helper.presentAlertError("Error - Control no trajo datos");
-    });
-    this.helper.dismiss();
+      let myData:any;
+      this.helper.showLoader("Refrescando Datos");
+      this.newCntrl.getAllSources().then(result=>{
+        console.log(result);
+        myData = result;
+        this.data =myData.sources; //result.sources;
+        this.dataTemp = myData.sources;
+        //this.helper.presentToast("Datos cargados correctamente",3000,"top");
+        //this.helper.presentAlertOK("Datos cargados correctamente");
+      }).catch(error=>{
+        console.log("Error - Control no trajo datos");
+        this.helper.presentToast("Error - Control no trajo datos",3000,"top");
+        this.helper.presentAlertError("Error - Control no trajo datos");
+      });
+      this.helper.dismiss();
 
   }
 

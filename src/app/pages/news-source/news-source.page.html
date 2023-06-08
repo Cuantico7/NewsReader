@@ -1,0 +1,90 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-searchbar
+      *ngIf="!showLupa"
+      placeholder="Search ......"
+      showCancelButton="focus"
+      cancelButtonText="Cancel"
+      animated="true"
+      show-clear-button="always"
+      clear-icon="trash-bin"
+      value=""
+      (ionInput)="handleInputText($event)"
+      (ionCancel)="cancelSearhText($event)"
+    >
+    </ion-searchbar>
+    <ion-title *ngIf="showLupa"> Top News - {{sourceId}} </ion-title>
+
+    <ion-buttons slot="primary" *ngIf="showLupa" end>
+      <ion-button
+        color="primary"
+        ion-button
+        icon-only
+        light
+        *ngIf="showLupa"
+        (click)="showSearchTextBox()"
+      >
+        <ion-img src="assets/icon/search.png" size="32"></ion-img>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-item-sliding *ngFor="let new of data">
+    <ion-item
+      class="item item-thumbnail-left"
+      detail="false"
+      routerLink="../../new-detail/{{new}}"
+    >
+      <!-- Ejemplo de llamar a otra pagina desde metodo, en este caso no uso el ROUTERLINK
+        (click)="getAllNewsBySource2(source.id)"
+        -->
+      <ion-thumbnail item-start>
+        <img [src]="new.urlToImage" style="border-radius: 50%" />
+      </ion-thumbnail>
+
+      <ion-label>
+        <h2 text-wrap>{{ new.title }}</h2>
+        <p>
+          <ion-icon slot="icon-only" name="document"></ion-icon>
+          {{ new.description }}
+        </p>
+        <p>
+          <ion-icon slot="icon-only" name="radio"></ion-icon>
+          {{ new.author }}
+        </p>
+        <p>
+          <ion-icon slot="icon-only" name="calendar"></ion-icon>
+          {{ new.publishedAt | date:'short' }}
+        </p>
+        <p>
+          <ion-icon slot="icon-only" name="globe"></ion-icon>
+          {{ new.url}}
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item-options>
+      <ion-item-option color="primary">
+        <ion-icon
+          slot="top"
+          ios="ellipsis-horizontal"
+          md="ellipsis-vertical"
+        ></ion-icon>
+        More
+      </ion-item-option>
+      <ion-item-option color="secondary">
+        <ion-icon slot="top" name="archive"></ion-icon>
+        Archive
+      </ion-item-option>
+      <ion-item-option color="warning">
+        <ion-icon slot="top" name="document"></ion-icon>
+        File
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-content>

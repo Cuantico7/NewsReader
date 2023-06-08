@@ -1,0 +1,40 @@
+@use "sass:math";
+
+ion-title{
+    //-webkit-padding-start: 0;
+    //padding-inline-start: 0;
+    padding-left: 20px;
+    text-align: left !important;
+    color: rgb(255, 255, 255);   
+  }
+
+ion-searchbar {
+    height:px;
+    margin: 0 auto;
+    height: 40%;
+    display: block;
+    vertical-align: middle; 
+    background-color: transparent;
+    caret-color: #000000;   
+    border-radius: 15px
+  }
+  
+  ion-toolbar .sc-ion-searchbar-ios-h {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    caret-color: #000000;
+    //height: 50;
+  }
+  
+  
+  ion-toolbar ion-img {
+    width: 22px;
+    --border-color:None;
+    top : 6px;
+  }
+  
+  .ios ion-toolbar ion-img {
+    width: 22px;
+    --border-color:None;
+    top : 6px;
+  }
