@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Hola Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #loginForm="ngForm" novalidate>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-input
+          label="email"
+          labelPlacement="stacked"
+          placeholder="Enter Email Here"
+          name="email"
+          [(ngModel)]="login.email"
+          type="email"
+          #email="ngModel"
+          errorText="Email is required"
+          required
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Password"
+          labelPlacement="stacked"
+          placeholder="Enter Password Here"
+          name="password"
+          [(ngModel)]="login.password"
+          type="text"
+          #password="ngModel"
+          errorText="Password is required"
+          required
+        >
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="autenticar()" type="submit" expand="block">
+          Login
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="singup()" type="submit" expand="block">
+          SignUp
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

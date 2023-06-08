@@ -3,6 +3,8 @@ import { HttpNewsService } from '../api/http.newsservice';
 import { Observable} from 'rxjs';
 import { NewsControllService } from '../controllers/news/news-controll.service';
 import { HelperService } from '../services/helper.service';
+import { Router} from '@angular/router'
+
 
 @Component({
   selector: 'app-tab1',
@@ -16,7 +18,8 @@ export class Tab1Page {
   public filterTerm: any;
   public showLupa:any=true;
   constructor( public newCntrl:NewsControllService,
-               public helper:HelperService) {
+               public helper:HelperService,
+               public router :Router) {
     console.log("Houston all OK in TAPS1!!!");
     this.getAllNewsSource();
 
@@ -107,5 +110,10 @@ export class Tab1Page {
      {
       this.showLupa=true;
      }
+  }
+
+  exitApp()
+  {
+    this.router.navigateByUrl('/login');
   }
 }// Fin clase
